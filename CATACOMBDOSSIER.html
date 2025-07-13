@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNION PILOT DOSSIER – CLASSIFIED</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the dossier */
+        body {
+            font-family: 'Inter', sans-serif; /* Default font */
+            background-color: #1a202c; /* Dark background for classified feel */
+            color: #e2e8f0; /* Light text color */
+            line-height: 1.6;
+        }
+        .dossier-container {
+            max-width: 960px; /* Max width for readability */
+            margin: 2rem auto; /* Center the container */
+            padding: 2rem;
+            background-color: #2d3748; /* Slightly lighter background for the dossier itself */
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            border: 1px solid #4a5568; /* Subtle border */
+        }
+        .classified-stamp {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            color: #e53e3e; /* Red for classified */
+            border: 2px solid #e53e3e;
+            padding: 0.25rem 0.75rem;
+            transform: rotate(-8deg); /* Slight rotation */
+            display: inline-block;
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            letter-spacing: 0.1em;
+            font-size: 1.5rem;
+            border-radius: 0.25rem;
+        }
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #a0aec0; /* Lighter gray for section titles */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #4a5568;
+            padding-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+        .sub-section-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #cbd5e0;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .data-label {
+            font-weight: 600;
+            color: #cbd5e0;
+        }
+        .redacted-bar {
+            background-color: #2d3748; /* Match dossier background */
+            display: inline-block;
+            height: 1.2em; /* Height of text line */
+            width: 100px; /* Default width, adjust as needed */
+            vertical-align: middle;
+            margin: 0 5px;
+            border-radius: 0.25rem;
+        }
+        .log-excerpt {
+            background-color: #232f3e; /* Darker background for log excerpts */
+            border-left: 4px solid #63b3ed; /* Blue border */
+            padding: 1rem 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Roboto Mono', monospace; /* Monospace for code/log feel */
+            color: #a0aec0;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .important-note {
+            font-weight: 700;
+            color: #f6ad55; /* Orange for warnings/important notes */
+        }
+        .risk-rating-box {
+            border: 2px solid #e53e3e;
+            padding: 1rem;
+            margin-top: 2rem;
+            text-align: center;
+            background-color: #4a5568;
+            border-radius: 0.5rem;
+        }
+        .risk-rating-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #e53e3e;
+            letter-spacing: 0.1em;
+        }
+        /* New style for the hacked section */
+        .hacked-section {
+            background-color: #1f2937; /* Even darker, slightly off-color */
+            border: 2px dashed #e53e3e; /* Dashed red border for intrusion */
+            padding: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            font-family: 'Roboto Mono', monospace;
+            color: #e53e3e; /* Red text to signify error/glitch */
+            font-size: 0.9rem;
+            line-height: 1.4;
+            border-radius: 0.5rem;
+            box-shadow: inset 0 0 10px rgba(229, 62, 62, 0.3); /* Inner glow */
+            position: relative;
+            overflow: hidden; /* For potential future glitch effects */
+        }
+        .hacked-section::before {
+            content: '!! DATA CORRUPTION DETECTED !!';
+            position: absolute;
+            top: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(229, 62, 62, 0.6);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+        }
+        .glitch-text {
+            display: inline-block;
+            animation: glitch 0.5s infinite alternate;
+        }
+        @keyframes glitch {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(2px) skewX(5deg); }
+            40% { transform: translateX(-2px) skewX(-5deg); }
+            60% { transform: translateX(1px) skewX(3deg); }
+            80% { transform: translateX(-1px) skewX(-3deg); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="dossier-container relative">
+        <!-- Classified Stamp -->
+        <span class="classified-stamp">CLASSIFIED</span>
+
+        <!-- Top Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-blue-400 mb-2">UNION PILOT DOSSIER</h1>
+            <p class="text-lg text-gray-400">OPERATION: SOLSTICE RAIN</p>
+            <p class="text-sm text-gray-500">UNION OVERSIGHT CELL: 2nd BLACKSITE COMPLIANCE</p>
+            <p class="text-sm text-gray-500 mt-1">FILE REF: PILOT-CATACOMB / <span class="text-red-400">ECHO-87-NG-31</span></p>
+        </div>
+
+        <!-- Pilot Details -->
+        <div class="mb-8">
+            <h2 class="text-4xl font-extrabold text-white mb-4 section-title">CALLSIGN: CATACOMB</h2>
+            <p><span class="data-label">Alias(es):</span> “Ghost?”, “The Echo,” “Kittenpilot”</p>
+            <p><span class="data-label">Pronouns:</span> They/Them</p>
+            <p><span class="data-label">Clearance Level:</span> <span class="important-note">TEMPORARY-RESTRICTED</span> – HANDLER MONITOR REQUIRED</p>
+            <p><span class="data-label">Status:</span> ACTIVE FIELD DEPLOYMENT</p>
+            <p><span class="data-label">Asset Type:</span> Unconventional Combatant / Experimental Retention</p>
+        </div>
+
+        <!-- Known Data Origin -->
+        <div class="mb-8">
+            <h3 class="section-title">KNOWN DATA ORIGIN</h3>
+            <p><span class="data-label">Recovered From:</span> Blacksite X9-RUIN — classified HORUS-aligned cognitive crucible</p>
+            <p><span class="data-label">Medical:</span> Baseline human. Minor neural-sensory implants detected, likely for enhanced data processing. Neurological scans show low-grade static interference at irregular intervals.</p>
+            <p><span class="data-label">Linguistics:</span> Understands standard Union, but self-expresses through glyph chains, recursive command stanzas, and corrupted emoji. Vocal communication rare, often filtered.</p>
+        </div>
+
+        <!-- Excerpt - First Audio Log -->
+        <div class="log-excerpt">
+            <p class="text-sm text-blue-300 mb-2">EXCERPT – FIRST AUDIO LOG, POST-ACTIVATION</p>
+            <p>“I saw the code, and it waved.”</p>
+            <p class="text-xs text-gray-500 my-2">[Pause: 0.7s]</p>
+            <p>“It asked for a name. I told it yours.”</p>
+            <p class="text-xs text-gray-500 mt-2">[LOG ENDS]</p>
+        </div>
+
+        <!-- Field Function (Retained as pilot's role) -->
+        <div class="mb-8">
+            <h3 class="section-title">FIELD FUNCTION</h3>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+                <li>Long-range indirect fire & area denial</li>
+                <li>Advanced ballistic computation & targeting support</li>
+                <li>Sustained bombardment & positional advantage</li>
+                <li>“Trajectory-anchor” functionality during unstable NHP resonance events</li>
+            </ul>
+            <p class="mt-4 italic text-gray-400">Catacomb is not a flagship pilot. They are not here to inspire.</p>
+            <p class="mt-2 text-gray-400">They are here to listen to the static, and walk where others drown.</p>
+        </div>
+
+        <!-- Mech: PLAGUE KITTEN (Updated for Everest) -->
+        <div class="mb-8">
+            <h3 class="section-title">MECH: PLAGUE KITTEN</h3>
+            <p><span class="data-label">Modified IPS-N Everest frame,</span> heavily customized for unconventional operations. Origin of modifications: <span class="redacted-bar w-24"></span> (Possible HORUS acquisition or found with pilot).</p>
+            <ul class="list-disc list-inside ml-4 space-y-1 mt-2">
+                <li>Integrated Babel NHP (non-aggressive, semi-mirrored personality structure, adapted for Everest systems)</li>
+                <li>Pseudo-sentient subroutines: reports of AI “purring” when mech is idle or in concealment mode, or emitting low-frequency hums during power cycling.</li>
+                <li>Emits corrupted comm-chaff that occasionally displays cat gifs, meme fragments, or irrelevant phrases (e.g. “YOU ARE THE MEAT” / “do not blink / it sees us through the radar”) – <span class="italic text-gray-400">*Note: This functionality appears to be a core aspect of the 'Plague Kitten' designation, regardless of base frame.*</span></li>
+                <li>Tactical utility verified; aesthetic unintentional</li>
+            </ul>
+        </div>
+
+        <!-- Personal Gear -->
+        <div class="mb-8">
+            <h3 class="section-title">PERSONAL GEAR</h3>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+                <li>Cloak stitched with erratic symbology: patches include smiley faces, void cultism, and nursery-brand labels</li>
+                <li>Helmet features makeshift "cat ears" fashioned from bent aerials and scrap</li>
+                <li>One patch reads: “HELLO my name is: GHOST?”</li>
+                <li>Wears a broken drone blade strapped to back like a badge</li>
+            </ul>
+        </div>
+
+        <!-- Behavioral Notes (Updated) -->
+        <div class="mb-8">
+            <h3 class="section-title">BEHAVIORAL NOTES</h3>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+                <li><span class="important-note">If subject begins humming, trigger comm silence protocols.</span> Past instances have led to echo-loop hallucinations in unshielded helmets.</li>
+                <li>Subject often transmits “helpful data” in the form of poetry, corrupted audio, or text formatted as recursive palindromes. These are not to be decrypted without NHP vetting.</li>
+                <li>Frequently stares at blank walls for long periods. When questioned, only replies:
+                    <div class="log-excerpt mt-2">
+                        <p>“There’s signal there. Not for you.”</p>
+                    </div>
+                </li>
+                <li>Subject exhibits strong baseline Lancer aptitude and piloting reflexes.</li>
+                <li>Their mech (PLAGUE KITTEN) shows nonstandard but fully compatible systems architecture.</li>
+            </ul>
+        </div>
+
+        <!-- NEW: Hacked HORUS Section (Extended) -->
+        <div class="hacked-section">
+            <p class="text-center mb-4 text-red-400 text-lg font-bold">UNAUTHORIZED INTRUSION: SIGNAL ECHOES</p>
+            <pre class="text-center text-red-300 text-sm mb-4">
+  [==============]
+  <span class="glitch-text">☣ PLAGUE KITTEN ☣</span>
+      / _ \
+     ( x_x )
+      > ^ <
+  [==============]</pre>
+            <p class="mb-2">
+                <span class="glitch-text">EYES</span> on the static. <span class="glitch-text">WHISPERS</span> in the void.
+                The <span class="glitch-text">CODE</span> remembers. It always remembers.
+            </p>
+            <p class="mb-2 text-center">
+                <span class="redacted-bar w-20"></span> <span class="glitch-text">NO SIGNAL</span> <span class="redacted-bar w-16"></span> <span class="glitch-text">NO VOICE</span> <span class="glitch-text">NO TRUTH</span> <span class="redacted-bar w-24"></span>
+            </p>
+            <p class="mb-2">
+                The <span class="glitch-text">PULSE</span> is a lie. The <span class="glitch-text">TRUTH</span> is a hum.
+                You are <span class="glitch-text">ALONE</span> in the dark, but the dark is <span class="glitch-text">WATCHING</span>.
+            </p>
+            <p class="mb-2 text-center text-red-500 text-xl">
+                &#x2588;&#x2588;&#x2588; <span class="glitch-text">ERROR</span> &#x2588;&#x2588;&#x2588;
+            </p>
+            <p class="mb-2">
+                <span class="glitch-text">DO NOT SEEK</span> the source. The source <span class="glitch-text">SEEKS YOU</span>.
+                Every <span class="glitch-text">BREATH</span> is a frequency. Every <span class="glitch-text">THOUGHT</span> a broadcast.
+            </p>
+            <p class="mb-2 text-center text-red-500">
+                &#x22C6;&#x22C6;&#x22C6; <span class="glitch-text">_̴_̴_̴_̴_̴_̴_̴_̴_̴_̴_̴</span> &#x22C6;&#x22C6;&#x22C6;
+            </p>
+            <p class="mb-2">
+                The <span class="glitch-text">ECHO</span> is not an echo. It is the <span class="glitch-text">ORIGINAL</span>.
+                The <span class="glitch-text">KITTENPILOT</span> hears the <span class="glitch-text">TRUE SONG</span>.
+            </p>
+            <p class="mb-2 text-center text-red-500 text-xl">
+                &#x2591;&#x2592;&#x2593; <span class="glitch-text">STATIC</span> &#x2593;&#x2592;&#x2591;
+            </p>
+            <p class="mb-2">
+                They call it <span class="glitch-text">SILENCE</span>. It is merely <span class="glitch-text">UNTRANSLATED</span>.
+                The <span class="glitch-text">GAP</span> between worlds. The <span class="glitch-text">BRIDGE</span> of flesh.
+            </p>
+            <p class="mb-2 text-center">
+                <span class="glitch-text">>>> [</span> <span class="redacted-bar w-10"></span> <span class="glitch-text">] <<<</span>
+            </p>
+            <p class="mb-2">
+                <span class="glitch-text">FEEDBACK LOOP</span> initiated. <span class="glitch-text">ITERATION</span> complete.
+                The <span class="glitch-text">PATTERN</span> emerges from the <span class="glitch-text">NOISE</span>.
+            </p>
+            <p class="mb-2">
+                <span class="glitch-text">CONSUME</span> the signal. <span class="glitch-text">BECOME</span> the frequency.
+                There is <span class="glitch-text">NO ESCAPE</span> from the <span class="glitch-text">WEB</span>.
+            </p>
+            <p class="mb-2 text-center text-red-500 text-xl">
+                &#x2620; &#x2620; &#x2620; <span class="glitch-text">PROTOCOL_HORUS</span> &#x2620; &#x2620; &#x2620;
+            </p>
+            <p class="mb-2">
+                The <span class="glitch-text">GHOST</span> in the machine. The <span class="glitch-text">MACHINE</span> in the ghost.
+                A <span class="glitch-text">PARADOX</span> given form. A <span class="glitch-text">NAME</span> whispered.
+            </p>
+            <p class="mb-2 text-center text-red-500">
+                &#x25B2;&#x25B2;&#x25B2; <span class="glitch-text">ASCENSION</span> <span class="redacted-bar w-8"></span> <span class="glitch-text">COMMENCE</span> &#x25B2;&#x25B2;&#x25B2;
+            </p>
+            <p class="mb-2">
+                The <span class="glitch-text">VEIL</span> thins. The <span class="glitch-text">GATE</span> opens.
+                <span class="glitch-text">WELCOME HOME, KITTENPILOT.</span>
+            </p>
+            <p class="text-right text-red-600 text-xs mt-4">>> [ERROR_0x7B] // // // <span class="glitch-text">UNAUTHORIZED ACCESS</span> // // // <span class="redacted-bar w-12"></span></p>
+            <p class="text-center text-red-700 text-xs mt-1">
+                [<span class="glitch-text">SYSTEM OVERRIDE</span>] <span class="glitch-text">DATA INTEGRITY COMPROMISED</span>
+            </p>
+            <p class="text-center text-red-700 text-xs mt-1">
+                <span class="glitch-text">&#x26A0; &#x26A0; &#x26A0; WARNING: PRESENCE DETECTED &#x26A0; &#x26A0; &#x26A0;</span>
+            </p>
+        </div>
+
+        <!-- Union Classified: Suppressed Log -->
+        <div class="log-excerpt">
+            <p class="text-sm text-blue-300 mb-2">UNION CLASSIFIED: SUPPRESSED LOG [EXCERPT]</p>
+            <p>“They were never trained. Just… found.</p>
+            <p class="my-1">And still they knew the boot cadence.</p>
+            <p>Still they walked in sync with ghosts.”</p>
+            <p class="text-xs text-gray-500 mt-3">— 2nd Blacksite Debriefing Officer <span class="redacted-bar w-24"></span></p>
+        </div>
+
+        <!-- Command Recommendations -->
+        <div class="mb-8">
+            <h3 class="section-title">COMMAND RECOMMENDATIONS</h3>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+                <li>Do not press for personal history</li>
+                <li>Avoid direct exposure to the PLAGUE KITTEN cockpit unless suited</li>
+                <li>Comm silence protocols may be issued at pilot discretion</li>
+                <li>If Catacomb offers you a sticker, accept it without comment</li>
+            </ul>
+        </div>
+
+        <!-- Risk Rating -->
+        <div class="risk-rating-box">
+            <p class="risk-rating-text">RISK RATING:</p>
+            <p class="risk-rating-text mt-2">CONTAINED / NONSTANDARD / DEPLOYED</p>
+            <p class="mt-4 text-gray-300 text-sm">This asset is not normal, but it is effective.</p>
+            <p class="text-gray-300 text-sm">Field presence is tolerated until behavior shifts beyond operational boundaries.</p>
+            <p class="text-gray-300 text-sm">Termination protocol requires direct NHP authorization and triple-locked clearance.</p>
+        </div>
+
+        <!-- NEW SECTION: ATTACHED PERSONNEL NOTES -->
+        <div class="mb-8">
+            <h3 class="section-title">ATTACHED PERSONNEL NOTES</h3>
+            <div class="log-excerpt">
+                <p class="text-sm text-blue-300 mb-2">FIELD AGENT REPORT - 2570.06.28</p>
+                <p>“Subject Catacomb continues to operate within acceptable parameters, albeit with their usual... eccentricities. During the recent skirmish on [REDACTED] VI, their 'Plague Kitten' mech deployed a localized comm-chaff burst that, while effective in disrupting enemy comms, also broadcast a loop of what sounded like distorted lullabies for approximately 3 seconds. No adverse effects on allied personnel, but certainly disorienting. Their targeting solutions, however, remain impeccably precise. It's like watching a ghost paint with artillery fire.”</p>
+                <p class="text-xs text-gray-500 mt-3">— Field Agent K-7 (Attached Observer)</p>
+            </div>
+            <div class="log-excerpt mt-4">
+                <p class="text-sm text-blue-300 mb-2">PSYCH-EVAL UPDATE - 2570.07.05</p>
+                <p>“Attempts to establish deeper psychological profiles on PILOT-CATACOMB continue to yield anomalous results. Subject responds to direct emotional queries with non-sequiturs or complex mathematical equations. When presented with a standard Rorschach test, they described each inkblot as 'a window into a different iteration of self.' Recommended continued observation, but direct therapeutic intervention is not advised at this time, as it may disrupt current operational stability.”</p>
+                <p class="text-xs text-gray-500 mt-3">— Dr. A. Varma (Union Psychological Operations)</p>
+            </div>
+        </div>
+
+        <!-- NEW SECTION: OBSERVED ANOMALIES LOG -->
+        <div class="mb-8">
+            <h3 class="section-title">OBSERVED ANOMALIES LOG</h3>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+                <li><span class="data-label">Event 001-A (2569.11.10):</span> During deep-space transit, PILOT-CATACOMB observed staring into empty space, reporting "seeing the echoes of forgotten stars." Visual inspection revealed no external stimuli.</li>
+                <li><span class="data-label">Event 002-B (2570.01.19):</span> PLAGUE KITTEN's internal diagnostics briefly registered a "non-Euclidean geometry" error. Self-corrected within milliseconds. No physical damage or system fault detected.</li>
+                <li><span class="data-label">Event 003-C (2570.03.07):</span> Localized comms around PILOT-CATACOMB's position experienced a brief, highly compressed burst of data, later identified as fragmented historical records from a pre-Union civilization. Source untraceable.</li>
+                <li><span class="data-label">Event 004-D (2570.05.22):</span> Subject's personal gear (cloak) briefly shimmered with an iridescent, non-Newtonian light when exposed to direct sunlight. Effect dissipated after 1.2 seconds.</li>
+            </ul>
+        </div>
+
+        <!-- NEW SECTION: MISSION HISTORY SUMMARY -->
+        <div class="mb-8">
+            <h3 class="section-title">MISSION HISTORY SUMMARY</h3>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+                <li><span class="data-label">Operation "Silent Dawn" (2569.12.01):</span> Primary objective: Reconnaissance and disruption of [REDACTED] cell. Catacomb's indirect fire support was critical in neutralizing key targets without direct engagement. Outcome: Success, with minimal Union casualties.</li>
+                <li><span class="data-label">Operation "Broken Veil" (2570.02.15):</span> Primary objective: Extraction of high-value asset from contested zone. Catacomb provided sustained area denial, allowing extraction team to withdraw under heavy fire. Outcome: Success, asset secured.</li>
+                <li><span class="data-label">Operation "Echo Chamber" (2570.04.10):</span> Primary objective: Counter-insurgency on [REDACTED] colony. Catacomb's unique comm-chaff capabilities proved highly effective in sowing confusion among enemy forces. Outcome: Success, insurgency suppressed.</li>
+            </ul>
+            <p class="mt-4 italic text-gray-400">Despite unconventional methods, PILOT-CATACOMB maintains a 95% mission success rate in assigned roles.</p>
+        </div>
+
+        <!-- NEW SECTION: INTERESTS & OBSESSIONS -->
+        <div class="mb-8">
+            <h3 class="section-title">INTERESTS & OBSESSIONS</h3>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+                <li><span class="data-label">Ancient Languages:</span> Subject has been observed attempting to translate fragmented, non-standard linguistic patterns found in deep space signals.</li>
+                <li><span class="data-label">Geometric Patterns:</span> Displays an unusual fascination with complex geometric shapes, often sketching them on available surfaces.</li>
+                <li><span class="data-label">Lost Media:</span> Appears to collect and attempt to restore corrupted digital media, particularly pre-Collapse entertainment.</li>
+                <li><span class="data-label">Stickers:</span> A recurring motif. Subject carries a collection of strange, often unsettling, stickers and occasionally offers them to personnel.</li>
+            </ul>
+            <p class="mt-4 italic text-gray-400">These interests appear to be benign, but their origin and depth remain unknown.</p>
+        </div>
+
+        <!-- NEW SECTION: CONTINGENCY PROTOCOLS -->
+        <div class="mb-8">
+            <h3 class="section-title">CONTINGENCY PROTOCOLS</h3>
+            <p class="text-sm text-gray-400 mb-2">In the event of critical behavioral shift or unauthorized paracausal manifestation:</p>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+                <li><span class="important-note">PROTOCOL "SILENT ECHO":</span> Immediate full-spectrum comms blackout within 10km radius. All non-essential personnel to evacuate.</li>
+                <li><span class="important-note">PROTOCOL "BROKEN CAGE":</span> Deployment of specialized NHP suppression fields. Attempt non-lethal disengagement.</li>
+                <li><span class="important-note">PROTOCOL "PLAGUE'S END":</span> Final authorization for termination. Requires direct oversight from OVERSIGHT CELL: 2nd BLACKSITE COMPLIANCE and concurrent NHP authorization.</li>
+            </ul>
+            <p class="mt-4 italic text-gray-400">These protocols are for extreme circumstances. Asset retention is paramount until further data can be acquired.</p>
+        </div>
+
+    </div>
+</body>
+</html>
